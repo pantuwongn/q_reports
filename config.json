@@ -1,0 +1,158 @@
+{
+
+    "FOLDER_CONFIG_DICT": {
+        "ind01": {
+            "keys": ["Symbol", "ValueDate", "SSIHistNETME", "SSIHistOrdersME", "SSIHistOrdersNETME", "SSIHistOrdersNETOTH", "ShortAmountKNETCH", "ShortAmountKNETOTH", "ShortAmountKOrdersAF", "LongAmountKNETAF", "LongAmountKNETOTH", "LongAmountKOrdersAF", "LongAmountKOrdersAS", "SSIHistNETAS", "SSIHistOrdersCH", "ShortAmountKOrdersNETOTH", "LongAmountKME", "LongAmountKNETCH", "LongAmountKOTH", "LongAmountKOrdersCH", "LongAmountKOrdersOTH", "SSIHistCH", "SSIHistME", "SSIHistOTH", "SSIHistOrdersNET", "ShortAmountKOrders", "LongAmountKOrders", "SSIHistAF", "SSIHistNETAF", "SSIHistOrders", "SSIHistOrdersAF", "SSIHistOrdersOTH", "ShortAmountKOrdersNET", "ShortAmountKOrdersNETME", "ShortAmountKOrdersOTH", "LongAmountKAF", "LongAmountKNET", "LongAmountKNETME", "LongAmountKOrdersNETAS", "SSIHist", "SSIHistAS", "SSIHistOrdersAS", "SSIHistOrdersNETAF", "SSIHistOrdersNETAS", "SSIHistOrdersNETCH", "ShortAmountKME", "ShortAmountKOrdersME", "ShortAmountKOrdersNETAF", "ShortAmountKOrdersNETCH", "LongAmountK", "LongAmountKCH", "LongAmountKOrdersNETAF", "SSIHistNET", "SSIHistNETCH", "SSIHistNETOTH", "ShortAmountKAF", "ShortAmountKAS", "ShortAmountKNETAF", "ShortAmountKOTH", "ShortAmountKOrdersAS", "ShortAmountKOrdersCH", "ShortAmountKOrdersNETAS", "LongAmountKOrdersME", "LongAmountKOrdersNET", "LongAmountKOrdersNETME", "LongAmountKOrdersNETOTH", "ShortAmountK", "ShortAmountKNET", "ShortAmountKNETAS", "LongAmountKAS", "LongAmountKNETAS", "LongAmountKOrdersNETCH", "ShortAmountKCH", "ShortAmountKNETME"],
+            "data_type": ["symbol", "timestamp", "float", "float", "float", "float","float","float","float","float","float","float","float", "float", "float","float","float","float","float","float","float", "float","float", "float", "float","float","float","float","float", "float","float", "float","float","float","float","float","float","float","float", "float", "float", "float","float","float", "float","float","float","float","float","float","float","float", "float", "float", "float","float","float","float","float","float","float","float","float","float","float","float","float","float","float","float","float","float","float","float"],
+            "timestamp_key": "ValueDate",
+            "instrument_key": "Symbol"
+        },
+        "12Texp": {
+            "keys": ["utc", "symbol", "baseCurrency", "quoteCurrency", "bid", "ask", "longLots", "shortLots", "contractSize", "longNotionalUsd", "shortNotionalUsd", "exposureBbi"],
+			"data_type": ["int", "symbol", "string", "string", "float", "float", "float", "float", "int", "float", "float", "float" ],
+			"timestamp_key": "utc",
+			"instrument_key": "symbol"
+        },
+        "13li": {
+            "keys": ["t", "i", "p", "l", "s"],
+            "data_type": ["int", "symbol", "float", "int", "int"],
+            "timestamp_key": "t",
+            "instrument_key": "i", 
+            "filename_format": "13li_history_{collection_time}.json",
+			"current_filename_format": "13li_current.json"
+        },
+        "13lixc": {
+            "keys": ["t", "i", "p", "l", "s"],
+            "data_type": ["int", "symbol", "float", "int", "int"],
+            "timestamp_key": "t",
+            "instrument_key": "i", 
+            "filename_format": "13lixc_history_{collection_time}.json",
+			"current_filename_format": "13licx_current.json"
+        },
+        "13lisd": {
+            "keys": ["t", "i", "p", "l", "s"],
+            "data_type": ["int", "symbol", "float", "int", "int"],
+            "timestamp_key": "t",
+            "instrument_key": "i", 
+            "filename_format": "13lisd_history_{collection_time}.json",
+			"current_filename_format": "13lisd_current.json"
+        },
+        "10Xenh___ServerUS02": {
+            "keys": ["time", "symbol", "longs", "shorts", "bbi"],
+            "data_type": ["timestamp", "symbol", "float", "float", "float"],
+            "timestamp_key": "time",
+            "instrument_key": "symbol", 
+            "filename_format": "10Xenh_history_{collection_time}.json",
+			"current_filename_format": "10Xenh_current.json"
+        },
+        "10Xenh___ServerUS03": {
+            "keys": ["time", "symbol", "longs", "shorts", "bbi"],
+            "data_type": ["timestamp", "symbol", "float", "float", "float"],
+            "timestamp_key": "time",
+            "instrument_key": "symbol", 
+            "filename_format": "10Xenh_history_{collection_time}.json",
+			"current_filename_format": "10Xenh_current.json"
+        },
+        "10Xenh___ServerUS05": {          
+            "keys": ["time", "symbol", "longs", "shorts", "bbi"],
+            "data_type": ["timestamp", "symbol", "float", "float", "float"],
+            "timestamp_key": "time",
+            "instrument_key": "symbol", 
+            "filename_format": "10Xenh_history_{collection_time}.json",
+			"current_filename_format": "10Xenh_current.json"
+        },
+        "10Xenh___ServerUS06": {          
+            "keys": ["time", "symbol", "longs", "shorts", "bbi"],
+            "data_type": ["timestamp", "symbol", "float", "float", "float"],
+            "timestamp_key": "time",
+            "instrument_key": "symbol", 
+            "filename_format": "10Xenh_history_{collection_time}.json",
+			"current_filename_format": "10Xenh_current.json"
+        },
+        "10Xenh___ServerUS07": {          
+            "keys": ["time", "symbol", "longs", "shorts", "bbi"],
+            "data_type": ["timestamp", "symbol", "float", "float", "float"],
+            "timestamp_key": "time",
+            "instrument_key": "symbol", 
+            "filename_format": "10Xenh_history_{collection_time}.json",
+			"current_filename_format": "10Xenh_current.json"
+        },
+        "10Xenh___ServerUS09": {          
+            "keys": ["time", "symbol", "longs", "shorts", "bbi"],
+            "data_type": ["timestamp", "symbol", "float", "float", "float"],
+            "timestamp_key": "time",
+            "instrument_key": "symbol", 
+            "filename_format": "10Xenh_history_{collection_time}.json",
+			"current_filename_format": "10Xenh_current.json"
+        },
+        "10Xenh___ServerUS10": {          
+            "keys": ["time", "symbol", "longs", "shorts", "bbi"],
+            "data_type": ["timestamp", "symbol", "float", "float", "float"],
+            "timestamp_key": "time",
+            "instrument_key": "symbol", 
+            "filename_format": "10Xenh_history_{collection_time}.json",
+			"current_filename_format": "10Xenh_current.json"
+        },
+        "10Xenh___ServerUS888": {          
+            "keys": ["time", "symbol", "longs", "shorts", "bbi"],
+            "data_type": ["timestamp", "symbol", "float", "float", "float"],
+            "timestamp_key": "time",
+            "instrument_key": "symbol", 
+            "filename_format": "10Xenh_history_{collection_time}.json",
+			"current_filename_format": "10Xenh_current.json"
+        },
+        "12Tenh": {
+			"keys": ["gmt", "symbol", "longs", "shorts", "bid", "ask", "absExposureSize", "region"],
+			"data_type": ["int", "symbol", "string", "string", "string", "string", "string", "string"],
+			"timestamp_key": "gmt",
+			"instrument_key": "symbol"
+		},
+        "12t": {
+            "keys": ["t", "i", "l", "s"],
+            "data_type": ["int", "symbol", "int", "int"],
+            "timestamp_key": "t",
+            "instrument_key": "i"
+        },
+        "12tfop": {
+            "keys": ["t", "i", "l", "s"],
+            "data_type": ["int", "symbol", "int", "int"],
+            "timestamp_key": "t",
+            "instrument_key": "i"
+        },
+        "12tmin": {
+            "keys": ["t", "i", "l", "s"],
+            "data_type": ["int", "symbol", "int", "int"],
+            "timestamp_key": "t",
+            "instrument_key": "i"
+        },
+        "10X": {
+            "keys": ["time", "symbol", "longs", "shorts", "bbi", "Bidprice", "Askprice"],
+            "data_type": ["timestamp", "symbol", "float", "float", "float", "float", "float"],
+            "timestamp_key": "time",
+            "instrument_key": "symbol"
+        },
+        "11vin": {
+            "keys": ["t", "i", "l", "s"],
+            "data_type": ["int", "symbol", "int", "int"],
+            "timestamp_key": "t",
+            "instrument_key": "i"
+        },
+        "11voz": {
+            "keys": ["t", "i", "l", "s"],
+            "data_type": ["int", "symbol", "int", "int"],
+            "timestamp_key": "t",
+            "instrument_key": "i"
+        },
+        "11vhk": {
+            "keys": ["t", "i", "l", "s"],
+            "data_type": ["int", "symbol", "int", "int"],
+            "timestamp_key": "t",
+            "instrument_key": "i"
+        }
+    },
+    "DB_HOST": "http://localhost",
+    "DB_PORT": "9000",
+    "PG_HOST": "10.0.0.26",
+    "PG_USER": "dev2",
+    "PG_NAME": "gkdata"
+}
