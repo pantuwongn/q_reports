@@ -13,11 +13,6 @@ from uuid import uuid4
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
-# Create file handler and set level to error
-file_handler = RotatingFileHandler(
-    'error.log', maxBytes=1024*1024, backupCount=5)
-file_handler.setLevel(logging.ERROR)
-
 # Create console handler and set level to debug
 console_handler = logging.StreamHandler(stdout)
 console_handler.setLevel(logging.DEBUG)
@@ -25,11 +20,9 @@ console_handler.setLevel(logging.DEBUG)
 # Create formatter and add it to the handlers
 formatter = logging.Formatter(
     '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-file_handler.setFormatter(formatter)
 console_handler.setFormatter(formatter)
 
 # Add the handlers to the logger
-logger.addHandler(file_handler)
 logger.addHandler(console_handler)
 
 with open('./config.json') as f:
@@ -203,11 +196,11 @@ class DBHandlerPG:
                     """
             params = [f"%{prefix}%", prefix]
             if threshold is not None:
-                query += " AND CAST(match_result[2] AS BIGINT) > %s"
+                query += " AND CAST(match_result[2] AS BIGINT) < %s"
                 params.append(threshold)
 
             # Add LIMIT clause
-            query += " ORDER BY match_result[2] LIMIT 100;"
+            query += " ORDER BY match_result[2] DESC LIMIT 1;"
         else:
             query = r"""
                     WITH extracted AS (
@@ -232,11 +225,11 @@ class DBHandlerPG:
                     """
             params = [f"%{prefix}%", prefix]
             if threshold is not None:
-                query += " AND to_timestamp(match_result[2], 'YYYYMMDD-HH24MISS') > %s::timestamp"
+                query += " AND to_timestamp(match_result[2], 'YYYYMMDD-HH24MISS') < %s::timestamp"
                 params.append(threshold)
 
             # Add LIMIT clause
-            query += " ORDER BY match_result[2] LIMIT 100;"
+            query += " ORDER BY match_result[2] DESC LIMIT 1;"
 
         with conn.cursor() as cur:
             cur.execute(query, params)

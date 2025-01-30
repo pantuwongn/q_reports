@@ -3,17 +3,11 @@ from dbHandler import DBHandlerPG, datetime_to_windows_tick, constructDataDict
 import json
 import logging
 import xmltodict
-from logging.handlers import RotatingFileHandler
 from sys import stdout
 
 # Create logger
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
-
-# Create file handler and set level to error
-file_handler = RotatingFileHandler(
-    'error.log', maxBytes=1024*1024, backupCount=5)
-file_handler.setLevel(logging.ERROR)
 
 # Create console handler and set level to debug
 console_handler = logging.StreamHandler(stdout)
@@ -22,11 +16,10 @@ console_handler.setLevel(logging.DEBUG)
 # Create formatter and add it to the handlers
 formatter = logging.Formatter(
     '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-file_handler.setFormatter(formatter)
+
 console_handler.setFormatter(formatter)
 
 # Add the handlers to the logger
-logger.addHandler(file_handler)
 logger.addHandler(console_handler)
 
 with open('./config.json') as f:
@@ -51,6 +44,7 @@ def get_data_by_datetime(datetimes=None):
         datetimes = [dt]
     else:
         for idx in range(len(datetimes)):
+            dt = datetimes[idx]
             parsed_dt = datetime.strptime(dt, "%Y-%m-%d %H:%M:%S")
             datetimes[idx] = parsed_dt.isoformat()
 
@@ -58,6 +52,7 @@ def get_data_by_datetime(datetimes=None):
     result_dict_list = []
     for dataset_id in dataset_id_to_config:
         for dt in datetimes:
+            logger.info(f'working for {dataset_id} for dt = {dt}')
             # if dataset_id is ind01, need to change to windows tick
             isoDt = dt
             if dataset_id == 'ind01':
@@ -74,7 +69,7 @@ def get_data_by_datetime(datetimes=None):
 
             if not query_response:
                 # no file content to parse, wait for 10 minutes and try again
-                logger.wanring(f'no record for {
+                logger.warning(f'no record for {
                                dataset_id} for the datetime as {isoDt}')
                 continue
 
@@ -107,7 +102,7 @@ def get_data_by_datetime(datetimes=None):
                                 temp_data[key]['Value'])
                     data_dict['source'] = 'ind01'
                     data_dict['feed'] = ''
-                    data_dict_list.append(data_dict)
+                    # NOTE: not complted yet
             else:
                 try:
                     temp_data = json.loads(record[1])
@@ -146,11 +141,20 @@ def get_data_by_datetime(datetimes=None):
 
                     short = data_dict[dataset_id_to_config[dataset_id]['shortKey']]
                     long = data_dict[dataset_id_to_config[dataset_id]['longKey']]
-                    bbi = data_dict[dataset_id_to_config[dataset_id]['bbiKey']]
-                    if bbi == 'calculate':
-                        bbi = max(long, short)/min(long, short)
+                    if dataset_id_to_config[dataset_id]['bbiKey'] == 'calculate':
+                        a = max(long, short)
+                        b = min(long, short)
+                        if b != 0:
+                            bbi = a / b
+                        else:
+                            if a == 0:
+                                bbi = 1
+                            else:
+                                bbi = 20
                         if long < short:
                             bbi = bbi * -1
+                    else:
+                        bbi = dataset_id_to_config[dataset_id]['bbiKey']
 
                     result_dict = {
                         'source': None,
