@@ -3,6 +3,7 @@ from dbHandler import DBHandlerPG, datetime_to_windows_tick, constructDataDict
 import json
 import logging
 import xmltodict
+import pytz
 from sys import stdout
 
 # Create logger
@@ -40,7 +41,8 @@ def get_data_by_datetime(datetimes=None):
 
     if datetimes is None:
         # If no datetime is provided, use the current time
-        dt = datetime.now().isoformat()
+        eastern_tz = pytz.timezone("US/Eastern")
+        dt = datetime.now(eastern_tz).isoformat()
         datetimes = [dt]
     else:
         for idx in range(len(datetimes)):
@@ -141,6 +143,8 @@ def get_data_by_datetime(datetimes=None):
 
                     short = data_dict[dataset_id_to_config[dataset_id]['shortKey']]
                     long = data_dict[dataset_id_to_config[dataset_id]['longKey']]
+                    instrument = data_dict[dataset_id_to_config[dataset_id]
+                                           ['instrument_key']]
                     if dataset_id_to_config[dataset_id]['bbiKey'] == 'calculate':
                         a = max(long, short)
                         b = min(long, short)
@@ -160,6 +164,7 @@ def get_data_by_datetime(datetimes=None):
                         'source': None,
                         'feed': None,
                         'datetime': isoDt,
+                        'instrument': instrument,
                         'open': None,
                         'close': None,
                         'high': None,
